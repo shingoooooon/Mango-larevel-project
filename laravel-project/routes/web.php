@@ -19,3 +19,4 @@ Route::get('/', function () {
 });
 
 Route::get('/folders/{folder}/tasks', [TaskController::class, 'index'] );
+
