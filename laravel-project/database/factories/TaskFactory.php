@@ -2,12 +2,13 @@
 
 namespace Database\Factories;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Folder>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Task>
  */
-class FolderFactory extends Factory
+class TaskFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,7 +18,9 @@ class FolderFactory extends Factory
     public function definition()
     {
         return [
-            'title' => $this->faker->word,
+            'name' => $this->faker->word,
+            'status' => 1,
+            'due_date' => Carbon::now()->addDay(),
         ];
     }
 }

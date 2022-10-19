@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Task;
 use App\Models\User;
 use App\Models\Folder;
 use Database\Factories\UserFactory;
@@ -17,12 +18,15 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $user = User::Factory()->create([
-            'name' => 'Shingo',
-            'email' => 'skksb75@gmail.com',
-        ]);
+        User::Factory(5)->create();
+
         Folder::factory(5)->create([
-            'user_id' => $user->id
+            'user_id' => 1
         ]);
+
+        Task::factory(5)->create([
+            'folder_id' => 1
+        ]);
+
     }
 }
