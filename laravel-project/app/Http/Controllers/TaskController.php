@@ -13,7 +13,7 @@ class TaskController extends Controller
         $folders = Folder::latest()->get();
         $tasks = Task::where('folder_id', $folder->id)->get();
 
-        return view('tasks.index', [
+        return view('tasks/index', [
             'folders' => $folders,
             'tasks'  => $tasks,
         ]);

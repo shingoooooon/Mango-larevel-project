@@ -5,6 +5,9 @@
                 <div class="border-b border-gray-200">
                     <div class="text-black font-light uppercase text-sm py-5 px-5">Folders</div>
                 </div>
+                <div class="border-b border-gray-200">
+                    <a href="{{ route('folders.create') }}" class="text-white bg-teal-500 hover:bg-teal-700 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Add folder</a>
+                </div>
                 @if(count($folders) == 0)
                     <p>No folders found.</p>
                 @endif
