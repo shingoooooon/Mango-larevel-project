@@ -27,6 +27,14 @@ Route::get('/folders/{folder}/tasks/create', [TaskController::class, 'create'])
 Route::post('/folders/{folder}/tasks/store', [TaskController::class, 'store'])
     ->name('tasks.store');
 
+Route::get('/folders/{folder}/tasks/{task}/edit', [TaskController::class, 'edit'])
+    ->name('tasks.edit');
+Route::patch('/folders/{folder}/tasks/{task}/update', [TaskController::class, 'update'])
+    ->name('tasks.update');
+
+Route::delete('/folders/{folder}/tasks/{task}/delete', [TaskController::class, 'destroy'])
+    ->name('tasks.destroy');
+
 
 Route::get('/folders/create', [FolderController::class, 'create'])
     ->name('folders.create');

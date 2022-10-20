@@ -45,7 +45,14 @@
                         <td>{{ $task->name }}</td>
                         <td class="{{ $task->status_class }}">{{ $task->status_label }}</td>
                         <td>{{ $task->due_date }}</td>
-                        <td><a href="#">Edit</a></td>
+                        <td><a href="{{ route('tasks.edit', ['folder' => $task->folder_id, 'task' => $task->id]) }}">Edit</a></td>
+                        <td>
+                            <form method="post" action="{{ route('tasks.destroy', ['folder' => $task->folder_id, 'task' => $task->id]) }}">
+                            @csrf
+                            @method('DELETE')
+                                <button>Delete</button>
+                            </form>
+                        </td>
                     </tr>
                     @endforeach
                     </tbody>
