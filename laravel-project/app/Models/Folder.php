@@ -10,4 +10,9 @@ class Folder extends Model
     use HasFactory;
 
     protected $fillable = ['title'];
+
+    public function tasks()
+    {
+        return $this->hasMany(Task::class, 'folder_id');
+    }
 }

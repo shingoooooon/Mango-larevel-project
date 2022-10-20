@@ -22,7 +22,14 @@ Route::get('/', function () {
 Route::get('/folders/{folder}/tasks', [TaskController::class, 'index'] )
     ->name('tasks.index');
 
+Route::get('/folders/{folder}/tasks/create', [TaskController::class, 'create'])
+    ->name('tasks.create');
+Route::post('/folders/{folder}/tasks/store', [TaskController::class, 'store'])
+    ->name('tasks.store');
+
+
 Route::get('/folders/create', [FolderController::class, 'create'])
     ->name('folders.create');
-Route::post('/folders/store', [FolderController::class, 'store']);
+Route::post('/folders/store', [FolderController::class, 'store'])
+    ->name('folders.store');
 

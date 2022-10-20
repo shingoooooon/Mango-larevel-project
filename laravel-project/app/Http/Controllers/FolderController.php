@@ -17,7 +17,7 @@ class FolderController extends Controller
         $folder->title = $request->title;
         $folder->save();
 
-        return redirect()``
+        return redirect()
             ->route('tasks.index', $folder)
             ->with('message', 'folder created successfully!');
     }
