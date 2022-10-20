@@ -21,7 +21,7 @@ class DatabaseSeeder extends Seeder
         User::Factory(5)->create();
 
         Folder::factory(5)->create([
-            'user_id' => 1
+//            'user_id' => 1
         ]);
 
         Task::factory(5)->create([
