@@ -29,8 +29,16 @@ class UserController extends Controller
             ->with('message', 'User created and logged in');
     }
 
+    public function logout(Request $request)
+    {
+        auth()->logout();
 
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
 
+        return redirect('/login')
+            ->with('message', 'You have been logged out');
+    }
 
     public function login()
     {
@@ -50,8 +58,7 @@ class UserController extends Controller
 
             $folder = auth()->user()->folders()->first();
 
-            return redirect()
-                ->route('tasks.index', $folder)
+            return redirect('/home')
                 ->with('message', 'You are logged in');
         }
 
