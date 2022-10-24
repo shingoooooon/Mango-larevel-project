@@ -24,8 +24,7 @@ class UserController extends Controller
 
         auth()->login($user);
 
-        return redirect()
-            ->route('/home')
+        return redirect('/home')
             ->with('message', 'User created and logged in');
     }
 
@@ -58,6 +57,12 @@ class UserController extends Controller
 
             $folder = auth()->user()->folders()->first();
 
+            if ($folder)
+            {
+                return redirect()
+                    ->route('tasks.index', $folder)
+                    ->with('message', 'You are logged in');
+            }
             return redirect('/home')
                 ->with('message', 'You are logged in');
         }
