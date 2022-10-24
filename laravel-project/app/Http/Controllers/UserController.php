@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateUser;
+use App\Http\Requests\LoginUser;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -23,9 +24,11 @@ class UserController extends Controller
 
         auth()->login($user);
 
-        return redirect('/')
+        return redirect()
+            ->route('/home')
             ->with('message', 'User created and logged in');
     }
+
 
 
 
@@ -34,9 +37,25 @@ class UserController extends Controller
         return view('users/login');
     }
 
-    public function authenticate()
+    public function authenticate(LoginUser $request)
     {
+        $loginInfo = [
+            'email' => $request->email,
+            'password' => $request->password,
+            'password_confirmation' => $request->password_confirmation
+        ];
 
+        if (auth()->attempt($loginInfo)) {
+            $request->session()->regenerate();
+
+            $folder = auth()->user()->folders()->first();
+
+            return redirect()
+                ->route('tasks.index', $folder)
+                ->with('message', 'You are logged in');
+        }
+
+        return back()->withErrors(['email' => 'lnvalid Credentials'])->onlyInput('email');
     }
 
 }

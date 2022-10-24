@@ -20,6 +20,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/home', function () {
+    return view('home');
+});
+
 Route::get('/folders/{folder}/tasks', [TaskController::class, 'index'] )
     ->name('tasks.index');
 
