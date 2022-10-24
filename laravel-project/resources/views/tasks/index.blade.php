@@ -13,8 +13,8 @@
                 @endif
                 @foreach($folders as $folder)
                 <div>
-                    <a class="block py-3 px-5 {{ $current_folder_id === $folder->id ? 'bg-teal-400' : '' }}" href="/folders/{{ $folder->id }}/tasks" >
-                        <div class="{{ $current_folder_id === $folder->id ? 'text-white' : 'text-gray-700' }}">
+                    <a class="block py-3 px-5 {{ $current_folder->id === $folder->id ? 'bg-teal-400' : '' }}" href="/folders/{{ $folder->id }}/tasks" >
+                        <div class="{{ $current_folder->id === $folder->id ? 'text-white' : 'text-gray-700' }}">
                             {{ $folder->title }}
                         </div>
                     </a>
@@ -23,8 +23,8 @@
             </div>
             <div class="p-4 w-full bg-gray-50 ml-4 font-light mb-5 rounded">
                 <div class="flex items-center justify-between border-b border-gray-200">
-                    <div class="text-black font-bold uppercase text-sm py-5 px-5">Tasks</div>
-                    <a href="{{ route('tasks.create', ['folder' => $folder]) }}" class="text-white bg-teal-500 hover:bg-teal-700 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Add task</a>
+                    <div class="text-black font-bold uppercase text-sm py-5 px-5"><span class="text-lg">{{ $current_folder->title }}</span>->Tasks</div>
+                    <a href="{{ route('tasks.create', ['folder' => $current_folder->id]) }}" class="text-white bg-teal-500 hover:bg-teal-700 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Add task</a>
                 </div>
                 <table>
                     <thead>

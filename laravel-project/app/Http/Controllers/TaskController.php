@@ -14,11 +14,11 @@ class TaskController extends Controller
     public function index(Folder $folder)
     {
 
-        $folders = Folder::latest()->get();
+        $folders = auth()->user()->folders;
         $tasks = Task::where('folder_id', $folder->id)->get();
 
         return view('tasks/index', [
-            'current_folder_id' => $folder->id,
+            'current_folder' => $folder,
             'folders' => $folders,
             'tasks'  => $tasks,
         ]);
@@ -36,7 +36,8 @@ class TaskController extends Controller
         $task = new Task();
         $task->name = $request->name;
         $task->due_date = $request->due_date;
-        $folder->tasks()->save($task);
+        $task->folder_id = $folder->id;
+        $task->save();
 
         return redirect()
             ->route('tasks.index', $folder)
@@ -47,8 +48,6 @@ class TaskController extends Controller
     // arguments order matters
     public function edit(Folder $folder, Task $task)
     {
-//        $status = \App\Model\Task::STATUS;
-
         return view('tasks/edit', [
             'task' => $task
         ]);
