@@ -15,4 +15,9 @@ class Folder extends Model
     {
         return $this->hasMany(Task::class, 'folder_id');
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }
