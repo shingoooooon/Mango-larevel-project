@@ -15,6 +15,7 @@ class FolderController extends Controller
     public function store(CreateFolder $request) {
         $folder = new Folder();
         $folder->title = $request->title;
+        $folder->user_id = auth()->user()->id;
         $folder->save();
 
         return redirect()
