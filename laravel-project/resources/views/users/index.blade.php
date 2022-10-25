@@ -17,7 +17,7 @@
                 <tr class="text-center">
                     <td>{{ $user->name }}</td>
                     <td>{{ $user->email }}</td>
-                    <td>{{ $user->password }}</td>
+                    <td>xxxxxx</td>
                     <td>{{ $user->admin_label }}</td>
                     <td><a href="{{ route('users.edit', ['user' => $user->id]) }}">
                             <i class="fas fa-edit"></i>

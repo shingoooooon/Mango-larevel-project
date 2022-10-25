@@ -26,7 +26,6 @@ class EditUser extends CreateUser
         return [
             'name' => 'required|min:3',
             'email' => 'required|email',
-            'password' => 'required|confirmed|min:6',
             'is_admin' => 'required',
         ];
     }
