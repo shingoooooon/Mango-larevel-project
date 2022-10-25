@@ -24,7 +24,7 @@
                         </a>
                     </td>
                     <td>
-                        <form method="post" action="#">
+                        <form method="post" action="{{ route('users.destroy', ['user' => $user->id]) }}">
                             @csrf
                             @method('DELETE')
                             <button onclick="return confirm('Are you sure?')">

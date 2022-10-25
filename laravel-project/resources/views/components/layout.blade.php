@@ -11,16 +11,13 @@
 </head>
 <body>
 <nav class="flex items-center justify-between bg-teal-500 p-6">
-    @auth
     <div class="flex-shrink-0 text-white">
-        <a href="{{ route('tasks.index', ['folder' => auth()->user()->folders()->first()]) }}" class="font-semibold text-xl tracking-tight">TODO</a>
+        @auth
+        <a href="{{ auth()->user()->folders() != null ? '' : route('tasks.index', ['folder' => auth()->user()->folders()->first()]) }}" class="font-semibold text-xl tracking-tight">TODO</a>
+        @else
+        <a href="/login" class="font-semibold text-xl tracking-tight">TODO</a>
+        @endauth
     </div>
-    @else
-    <div class="flex-shrink-0 text-white">
-        <a href="#" class="font-semibold text-xl tracking-tight">TODO</a>
-    </div>
-    @endauth
-
     <div class="flex">
         @auth
         <span class="font-bold uppercase">Welcome {{ auth()->user()->name }}</span>

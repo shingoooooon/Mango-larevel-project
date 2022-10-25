@@ -12,7 +12,8 @@ class UserController extends Controller
 {
     public function index()
     {
-        $users = User::all();
+        $users = User::latest()->get();
+
         return view('users/index', [
             'users' => $users,
         ]);
@@ -39,7 +40,13 @@ class UserController extends Controller
             ->with('message', 'User edited successfully');
     }
 
+    public function destroy(User $user)
+    {
+        $user->delete();
 
+        return redirect()
+            ->route('users.index');
+    }
 
     public function create()
     {
