@@ -46,7 +46,13 @@ Route::group(['middleware' => 'auth'], function() {
     Route::post('/folders/store', [FolderController::class, 'store'])
         ->name('folders.store');
 
-    Route::get('/users', [UserController::class, 'index']);
+    Route::get('/users', [UserController::class, 'index'])
+        ->name('users.index');
+    Route::get('/users/{user}/edit', [UserController::class, 'edit'])
+        ->name('users.edit');
+    Route::patch('/users/{user}/update', [UserController::class, 'update'])
+        ->name('users.update');
+
     Route::post('/logout', [UserController::class, 'logout']);
 });
 

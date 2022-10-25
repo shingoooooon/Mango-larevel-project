@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateUser;
+use App\Http\Requests\EditUser;
 use App\Http\Requests\LoginUser;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -17,6 +18,28 @@ class UserController extends Controller
         ]);
 
     }
+
+    public function edit(User $user)
+    {
+        return view('users/edit', [
+            'user' => $user,
+        ]);
+    }
+
+    public function update(User $user, Request $request)
+    {
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = $request->password;
+        $user->is_admin = $request->is_admin;
+        $user->save();
+
+        return redirect()
+            ->route('users.index')
+            ->with('message', 'User edited successfully');
+    }
+
+
 
     public function create()
     {
