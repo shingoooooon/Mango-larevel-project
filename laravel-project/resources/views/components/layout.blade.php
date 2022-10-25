@@ -11,15 +11,27 @@
 </head>
 <body>
 <nav class="flex items-center justify-between bg-teal-500 p-6">
+    @auth
+    <div class="flex-shrink-0 text-white">
+        <a href="{{ route('tasks.index', ['folder' => auth()->user()->folders()->first()]) }}" class="font-semibold text-xl tracking-tight">TODO</a>
+    </div>
+    @else
     <div class="flex-shrink-0 text-white">
         <a href="#" class="font-semibold text-xl tracking-tight">TODO</a>
     </div>
+    @endauth
+
     <div class="flex">
         @auth
         <span class="font-bold uppercase">Welcome {{ auth()->user()->name }}</span>
+        @if(auth()->user()->is_admin)
+        <a href="/users" class="text-teal-200 hover:text-white ml-4">
+            <i class="fas fa-cog"></i>Manage Users
+        </a>
+        @endif
         <form method="post" action="/logout">
             @csrf
-            <button type="submit" class="text-teal-200 hover:text-white mx-4">
+            <button type="submit" class="text-teal-200 hover:text-white ml-4">
                 <i class="fas fa-running mr-1"></i>Logout
             </button>
         </form>

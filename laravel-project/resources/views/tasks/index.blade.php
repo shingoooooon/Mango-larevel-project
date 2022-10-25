@@ -31,7 +31,6 @@
                         <th>Name</th>
                         <th>Status</th>
                         <th>Due Date</th>
-                    </tr>
                     </thead>
                     <tbody>
                     @if(count($tasks) == 0)

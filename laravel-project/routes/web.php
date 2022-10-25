@@ -46,12 +46,14 @@ Route::group(['middleware' => 'auth'], function() {
     Route::post('/folders/store', [FolderController::class, 'store'])
         ->name('folders.store');
 
+    Route::get('/users', [UserController::class, 'index']);
     Route::post('/logout', [UserController::class, 'logout']);
 });
 
+
 Route::group(['middleware' => 'guest'], function() {
     Route::get('/register', [UserController::class, 'create']);
-    Route::post('/users', [UserController::class, 'store']);
+    Route::post('/storeuser', [UserController::class, 'store']);
     Route::get('/login', [UserController::class, 'login'])
         ->name('login');
     Route::post('/authenticate', [UserController::class, 'authenticate']);
