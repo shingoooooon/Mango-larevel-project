@@ -15,7 +15,7 @@ class TaskController extends Controller
     {
 
         $folders = auth()->user()->folders;
-        $tasks = Task::where('folder_id', $folder->id)->get();
+        $tasks = Task::where('folder_id', $folder->id)->paginate(4);
 
         return view('tasks/index', [
             'current_folder' => $folder,

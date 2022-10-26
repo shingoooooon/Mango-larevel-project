@@ -60,6 +60,9 @@
                     @endforeach
                     </tbody>
                 </table>
+                <div class="mt-6">
+                    {{ $tasks->links() }}
+                </div>
             </div>
         </div>
     </div>
