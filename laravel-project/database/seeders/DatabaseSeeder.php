@@ -43,12 +43,12 @@ class DatabaseSeeder extends Seeder
         foreach ($folders as $folder) {
             DB::table('folders')->insert([
                 'title' => $folder,
-                'user_id' => 1,
+                'user_id' => 5,
             ]);
         }
 
         // Create Tasks
-        $tasks = ['Laundry', 'Cooking', 'Cleaning', ];
+        $tasks = ['Laundry', 'Cooking', 'Cleaning', 'task4', 'task5', 'task6', 'task7', 'task8', 'task9', 'task10'];
         foreach ($tasks as $task) {
             DB::table('tasks')->insert([
                 'name' => $task,
