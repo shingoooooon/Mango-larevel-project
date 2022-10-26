@@ -14,7 +14,11 @@
 <nav class="flex items-center justify-between bg-teal-500 p-6">
     <div class="flex-shrink-0 text-white">
         @auth
-        <a href="{{ auth()->user()->folders() != null ? '' : route('tasks.index', ['folder' => auth()->user()->folders()->first()]) }}" class="font-semibold text-xl tracking-tight">TODO</a>
+            @if(auth()->user()->folders()->first())
+            <a href="{{ route('tasks.index', ['folder' => auth()->user()->folders()->first()]) }}" class="font-semibold text-xl tracking-tight">TODO</a>
+            @else
+            <a href="#" class="font-semibold text-xl tracking-tight">TODO</a>
+            @endif
         @else
         <a href="/login" class="font-semibold text-xl tracking-tight">TODO</a>
         @endauth
@@ -22,17 +26,17 @@
     <div class="flex">
         @auth
         <span class="font-bold uppercase">Welcome {{ auth()->user()->name }}</span>
-        @if(auth()->user()->is_admin)
-        <a href="/users" class="text-teal-200 hover:text-white ml-4">
-            <i class="fas fa-cog"></i>Manage Users
-        </a>
-        @endif
-        <form method="post" action="/logout">
-            @csrf
-            <button type="submit" class="text-teal-200 hover:text-white ml-4">
-                <i class="fas fa-running mr-1"></i>Logout
-            </button>
-        </form>
+            @if(auth()->user()->is_admin)
+            <a href="/users" class="text-teal-200 hover:text-white ml-4">
+                <i class="fas fa-cog"></i>Manage Users
+            </a>
+            @endif
+            <form method="post" action="/logout">
+                @csrf
+                <button type="submit" class="text-teal-200 hover:text-white ml-4">
+                    <i class="fas fa-running mr-1"></i>Logout
+                </button>
+            </form>
         @else
         <a href="/register" class="text-teal-200 hover:text-white mr-4">
             <i class="fas fa-user-plus mr-1"></i>Register
