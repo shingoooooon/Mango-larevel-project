@@ -25,6 +25,29 @@ Route::group(['middleware' => 'auth'], function() {
         return view('home');
     });
 
+//    Route::resource('folders', FolderController::class)
+//        ->only(['create', 'store'])
+//        ->names([
+//            'create' => 'folders.create',
+//            'store' => 'folders.store'
+//        ]);
+//
+//    Route::resource('tasks', TaskController::class)
+//        ->except('show')
+//        ->names([
+//            'index' => 'tasks.index',
+//            'create' => 'tasks.create',
+//            'store' => 'tasks.store',
+//            'edit' => 'tasks.edit',
+//            'update' => 'tasks.update',
+//            'destroy' => 'tasks.destroy',
+//        ]);
+
+    Route::get('/folders/create', [FolderController::class, 'create'])
+        ->name('folders.create');
+    Route::post('/folders/store', [FolderController::class, 'store'])
+        ->name('folders.store');
+
     Route::get('/folders/{folder}/tasks', [TaskController::class, 'index'] )
         ->name('tasks.index');
 
@@ -40,11 +63,6 @@ Route::group(['middleware' => 'auth'], function() {
 
     Route::delete('/folders/{folder}/tasks/{task}/delete', [TaskController::class, 'destroy'])
         ->name('tasks.destroy');
-
-    Route::get('/folders/create', [FolderController::class, 'create'])
-        ->name('folders.create');
-    Route::post('/folders/store', [FolderController::class, 'store'])
-        ->name('folders.store');
 
     Route::get('/users', [UserController::class, 'index'])
         ->name('users.index');
