@@ -20,6 +20,6 @@ class FolderController extends Controller
 
         return redirect()
             ->route('tasks.index', $folder)
-            ->with('message', 'folder created successfully!');
+            ->with('message', 'Folder created successfully!');
     }
 }

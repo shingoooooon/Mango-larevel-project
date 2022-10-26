@@ -44,7 +44,8 @@ class UserController extends Controller
         $user->delete();
 
         return redirect()
-            ->route('users.index');
+            ->route('users.index')
+            ->with('message', 'User deleted successfully');
     }
 
     public function create()
@@ -102,7 +103,7 @@ class UserController extends Controller
                     ->with('message', 'You are logged in');
             }
             return redirect('/home')
-                ->with('message', 'You are logged in');
+                ->with('message', 'You have logged in!');
         }
 
         return back()->withErrors(['email' => 'lnvalid Credentials'])->onlyInput('email');

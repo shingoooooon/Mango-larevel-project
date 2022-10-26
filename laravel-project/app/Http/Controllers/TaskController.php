@@ -41,7 +41,7 @@ class TaskController extends Controller
 
         return redirect()
             ->route('tasks.index', $folder)
-            ->with('message', 'task created successfully!');
+            ->with('message', 'Task created successfully!');
 
     }
 
@@ -62,7 +62,7 @@ class TaskController extends Controller
 
         return redirect()
             ->route('tasks.index', $folder)
-            ->with('message', 'task edited successfully!');
+            ->with('message', 'Task edited successfully!');
     }
 
     public function destroy(Folder $folder, Task $task)
@@ -70,7 +70,8 @@ class TaskController extends Controller
         $task->delete();
 
         return redirect()
-            ->route('tasks.index', $folder);
+            ->route('tasks.index', $folder)
+            ->with('message', 'Task deleted successfully!');
 
     }
 }
