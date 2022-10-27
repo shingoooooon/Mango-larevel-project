@@ -33,11 +33,13 @@
                     <a href="{{ route('tasks.create', ['folder' => $current_folder->id]) }}" class="text-white bg-teal-500 hover:bg-teal-700 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
                         <i class="fas fa-plus mr-1"></i>Add task</a>
                 </div>
-                <table class="w-full">
-                    <thead>
-                        <th>Name</th>
-                        <th>Status</th>
-                        <th>Due Date</th>
+                <table class="w-full border">
+                    <thead class="border">
+                        <th class="border">Name</th>
+                        <th class="border">Status</th>
+                        <th class="border">Due Date</th>
+                        <th class="border">Edit</th>
+                        <th class="border">Delete</th>
                     </thead>
                     <tbody>
                     @if(count($tasks) == 0)
@@ -46,11 +48,11 @@
                     </tr>
                     @endif
                     @foreach($tasks as $task)
-                    <tr class="text-center">
-                        <td>{{ $task->name }}</td>
-                        <td class="{{ $task->status_class }} mr-0">{{ $task->status_label }}</td>
-                        <td>{{ $task->due_date }}</td>
-                        <td><a href="{{ route('tasks.edit', ['folder' => $task->folder_id, 'task' => $task->id]) }}">
+                    <tr class="text-center border text-align">
+                        <td class="border p-3">{{ $task->name }}</td>
+                        <td class="{{ $task->status_class }} mr-0 mt-3 border">{{ $task->status_label }}</td>
+                        <td class="border">{{ $task->due_date }}</td>
+                        <td class="border"><a href="{{ route('tasks.edit', ['folder' => $task->folder_id, 'task' => $task->id]) }}">
                                 <i class="fas fa-edit"></i>
                             </a>
                         </td>
