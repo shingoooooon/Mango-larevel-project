@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CreateFolder;
 use App\Models\Folder;
 use Illuminate\Http\Request;
+use function PHPUnit\Framework\lessThanOrEqual;
 
 class FolderController extends Controller
 {
@@ -21,5 +22,25 @@ class FolderController extends Controller
         return redirect()
             ->route('tasks.index', $folder)
             ->with('message', 'Folder created successfully!');
+    }
+
+    public function destroy(Folder $folder)
+    {
+        $folder->delete();
+
+        $first_folder = auth()->user()->folders()->first();
+
+        if($first_folder)
+        {
+            return redirect()
+                ->route('tasks.index', $first_folder)
+                ->with('message', 'Folder had deleted successfully!');
+        }
+        else
+        {
+            return redirect()
+                ->route('tasks.create')
+                ->with('message', 'Folder had deleted successfully!');
+        }
     }
 }

@@ -48,6 +48,9 @@ Route::group(['middleware' => 'auth'], function() {
     Route::post('/folders/store', [FolderController::class, 'store'])
         ->name('folders.store');
 
+    Route::delete('/folders/{folder}/delete', [FolderController::class, 'destroy'])
+        ->name('folders.destroy');
+
     Route::get('/folders/{folder}/tasks', [TaskController::class, 'index'] )
         ->name('tasks.index');
 
