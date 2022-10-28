@@ -23,6 +23,7 @@
                     </tr>
                 @endif
                 @foreach($users as $user)
+                    @if($user != auth()->user())
                     <tr class="text-center">
                         <td class="border border-slate-300 p-3">{{ $user->id }}</td>
                         <td class="border border-slate-300 text-left p-3">{{ $user->username }}</td>
@@ -42,6 +43,7 @@
                             </form>
                         </td>
                     </tr>
+                    @endif
                 @endforeach
                 </tbody>
             </table>
