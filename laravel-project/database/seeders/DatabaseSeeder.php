@@ -27,6 +27,8 @@ class DatabaseSeeder extends Seeder
                 'username' => $user,
                 'email' => $user . '@gmail.com',
                 'password' => bcrypt('111111'),
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
             ]);
         }
 
@@ -36,6 +38,8 @@ class DatabaseSeeder extends Seeder
             'email' => 'shingo@gmail.com',
             'password' => bcrypt('111111'),
             'is_admin' => true,
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
         ]);
 
         // Create Folders
