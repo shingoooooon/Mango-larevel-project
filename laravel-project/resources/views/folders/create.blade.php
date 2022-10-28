@@ -1,5 +1,6 @@
 <x-layout>
-    <div class="container border mx-auto p-6 mt-6">
+@include('partials._navigation')
+    <div class="container border mx-auto w-1/3 p-6 mt-32">
         <form method="post" action="{{ route('folders.store') }}">
         @csrf
             <h1 class="text-2xl mb-5 text-center">Create new folder</h1>
@@ -10,7 +11,18 @@
                 <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                 @enderror
             </div>
-            <button type="submit" class="text-white bg-teal-700 hover:bg-teal-800 focus:ring-4 focus:outline-none focus:ring-teal-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-teal-600 dark:hover:bg-teal-700 dark:focus:ring-teal-800">Submit</button>
+            <div class="flex items-center justify-between">
+                <button type="submit" class="text-white bg-teal-700 hover:bg-teal-800 focus:ring-4 focus:outline-none focus:ring-teal-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-teal-600 dark:hover:bg-teal-700 dark:focus:ring-teal-800">Create</button>
+                @if(auth()->user()->folders->first())
+                <a href="{{ route('tasks.index', auth()->user()->folders->first()) }}" class="text-white bg-slate-500 hover:bg-slate-800 focus:ring-4 focus:outline-none focus:ring-slate-300 font-medium rounded-lg text-sm w-full sm:w-auto px-3 py-1.5 text-center dark:bg-slate-600 dark:hover:bg-slate-700 dark:focus:ring-slate-800">
+                    <i class="fas fa-undo"></i>
+                </a>
+                @else
+                <a href="/home" class="text-white bg-slate-500 hover:bg-slate-800 focus:ring-4 focus:outline-none focus:ring-slate-300 font-medium rounded-lg text-sm w-full sm:w-auto px-3 py-1.5 text-center dark:bg-slate-600 dark:hover:bg-slate-700 dark:focus:ring-slate-800">
+                    <i class="fas fa-undo"></i>
+                </a>
+                @endif
+            </div>
         </form>
     </div>
 </x-layout>

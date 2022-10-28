@@ -1,7 +1,7 @@
 <x-layout>
 @include('partials._navigation')
     <div class="container mx-auto">
-        <div class="p-4 w-full bg-gray-50 ml-4 font-light rounded">
+        <div class="p-4 w-full bg-gray-50 mt-6 rounded">
             <div class="text-center border-b border-gray-200">
                 <h1 class="text-xl font-bold my-10">Users List</h1>
             </div>
