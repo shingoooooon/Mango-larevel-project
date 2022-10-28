@@ -19,7 +19,7 @@
                             @csrf
                             @method('DELETE')
                             <button onclick="return confirm('Are you sure?')">
-                                <i class="fas fa-trash-alt"></i>
+                                <i class="fas fa-trash-alt hover:text-gray-400"></i>
                             </button>
                         </form>
                     </a>
@@ -57,7 +57,7 @@
                         </td>
                         <td class="border border-slate-300">{{ $task->due_date }}</td>
                         <td class="border border-slate-300"><a href="{{ route('tasks.edit', ['folder' => $task->folder_id, 'task' => $task->id]) }}">
-                                <i class="fas fa-edit"></i>
+                                <i class="fas fa-edit hover:text-gray-400"></i>
                             </a>
                         </td>
                         <td class="border border-slate-300">
@@ -65,7 +65,7 @@
                             @csrf
                             @method('DELETE')
                                 <button onclick="return confirm('Are you sure?')">
-                                    <i class="fas fa-trash-alt"></i>
+                                    <i class="fas fa-trash-alt hover:text-gray-400"></i>
                                 </button>
                             </form>
                         </td>

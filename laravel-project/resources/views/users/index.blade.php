@@ -29,7 +29,7 @@
                         <td class="border border-slate-300 text-left pl-2">{{ $user->email }}</td>
                         <td class="border border-slate-300">{{ $user->admin_label }}</td>
                         <td class="border border-slate-300"><a href="{{ route('users.edit', ['user' => $user->id]) }}">
-                                <i class="fas fa-edit"></i>
+                                <i class="fas fa-edit hover:text-gray-400"></i>
                             </a>
                         </td>
                         <td class="border border-slate-300">
@@ -37,7 +37,7 @@
                                 @csrf
                                 @method('DELETE')
                                 <button onclick="return confirm('Are you sure?')">
-                                    <i class="fas fa-trash-alt"></i>
+                                    <i class="fas fa-trash-alt hover:text-gray-400"></i>
                                 </button>
                             </form>
                         </td>
