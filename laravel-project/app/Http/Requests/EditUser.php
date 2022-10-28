@@ -24,7 +24,7 @@ class EditUser extends CreateUser
     public function rules()
     {
         return [
-            'name' => 'required|min:3',
+            'username' => 'required|min:3',
             'email' => 'required|email',
             'is_admin' => 'required',
         ];

@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Factory;
 
 class LoginUser extends FormRequest
 {
@@ -24,7 +25,7 @@ class LoginUser extends FormRequest
     public function rules()
     {
         return [
-            'email' => 'required|email',
+            'login' => 'required',
             'password' => 'required'
         ];
     }

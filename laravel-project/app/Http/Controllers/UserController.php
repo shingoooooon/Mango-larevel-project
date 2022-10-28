@@ -29,7 +29,9 @@ class UserController extends Controller
 
     public function update(User $user, EditUser $request)
     {
-        $user->name = $request->name;
+        dd($request->is_admin);
+
+        $user->username = $request->username;
         $user->email = $request->email;
         $user->is_admin = $request->is_admin;
         $user->save();
@@ -56,7 +58,7 @@ class UserController extends Controller
     public function store(CreateUser $request)
     {
         $user = new User();
-        $user->name = $request->name;
+        $user->username = $request->username;
         $user->email = $request->email;
         $user->password = bcrypt($request->password);
         $user->save();
@@ -85,13 +87,11 @@ class UserController extends Controller
 
     public function authenticate(LoginUser $request)
     {
-        $loginInfo = [
-            'email' => $request->email,
-            'password' => $request->password,
-            'password_confirmation' => $request->password_confirmation
-        ];
+        // checking input is email or username.
+        $field = filter_var($request->input('login'), FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
+        $request->merge([$field => $request->input('login')]);
 
-        if (auth()->attempt($loginInfo)) {
+        if (auth()->attempt($request->only($field, 'password'))) {
             $request->session()->regenerate();
 
             $folder = auth()->user()->folders()->first();
@@ -106,7 +106,7 @@ class UserController extends Controller
                 ->with('message', 'You have logged in!');
         }
 
-        return back()->withErrors(['email' => 'lnvalid Credentials'])->onlyInput('email');
+        return back()->withErrors(['login' => 'lnvalid Credentials'])->onlyInput('login');
     }
 
 }
