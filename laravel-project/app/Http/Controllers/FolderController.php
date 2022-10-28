@@ -38,8 +38,7 @@ class FolderController extends Controller
         }
         else
         {
-            return redirect()
-                ->route('tasks.create')
+            return redirect('/home')
                 ->with('message', 'Folder had deleted successfully!');
         }
     }
