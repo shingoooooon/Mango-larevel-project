@@ -8,9 +8,9 @@
             <table class="w-full border-separate border border-slate-400">
                 <thead>
                     <tr>
-                        <th class="border border-slate-300 p-4 w-24">User_id</th>
-                        <th class="text-left border border-slate-300 p-4">Username</th>
-                        <th class="text-left border border-slate-300 pl-2">Email</th>
+                        <th class="border border-slate-300 p-4 w-24">ID</th>
+                        <th class="border border-slate-300 p-4">Username</th>
+                        <th class="border border-slate-300 pl-2">Email</th>
                         <th class="border border-slate-300">Admin</th>
                         <th class="border border-slate-300">Edit</th>
                         <th class="border border-slate-300">Delete</th>

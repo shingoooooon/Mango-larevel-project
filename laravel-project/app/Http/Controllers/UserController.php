@@ -12,7 +12,7 @@ class UserController extends Controller
 {
     public function index()
     {
-        $users = User::latest()->get();
+        $users = User::all();
 
         return view('users/index', [
             'users' => $users,
@@ -29,8 +29,6 @@ class UserController extends Controller
 
     public function update(User $user, EditUser $request)
     {
-        dd($request->is_admin);
-
         $user->username = $request->username;
         $user->email = $request->email;
         $user->is_admin = $request->is_admin;
