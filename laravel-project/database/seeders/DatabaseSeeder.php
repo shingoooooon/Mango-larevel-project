@@ -24,7 +24,7 @@ class DatabaseSeeder extends Seeder
         $users = ['mike', 'miho', 'mizuho', 'kuni'];
         foreach ($users as $user) {
             DB::table('users')->insert([
-                'name' => $user,
+                'username' => $user,
                 'email' => $user . '@gmail.com',
                 'password' => bcrypt('111111'),
             ]);
@@ -32,7 +32,7 @@ class DatabaseSeeder extends Seeder
 
         // Create Admin User
         DB::table('users')->insert([
-            'name' => 'shingo',
+            'username' => 'shingo',
             'email' => 'shingo@gmail.com',
             'password' => bcrypt('111111'),
             'is_admin' => true,
