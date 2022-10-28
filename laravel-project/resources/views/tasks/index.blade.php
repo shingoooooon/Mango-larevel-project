@@ -19,7 +19,7 @@
                             @csrf
                             @method('DELETE')
                             <button onclick="return confirm('Are you sure?')">
-                                <i class="fas fa-trash-alt hover:text-gray-400"></i>
+                                <i class="fas fa-trash-alt hover:text-red-400"></i>
                             </button>
                         </form>
                     </a>
@@ -44,11 +44,11 @@
                     <tbody>
                     @if(count($tasks) == 0)
                     <tr class="text-center">
-                        <td>No tasks found.</td>
+                        <td colspan="5" class="border border-slate-300">No tasks found.</td>
                     </tr>
                     @endif
                     @foreach($tasks as $task)
-                    <tr class="text-center text-align">
+                    <tr class="text-center">
                         <td class="border border-slate-300 p-3">{{ $task->name }}</td>
                         <td class="border border-slate-300">
                             <div class="{{ $task->status_class }}">
@@ -65,7 +65,7 @@
                             @csrf
                             @method('DELETE')
                                 <button onclick="return confirm('Are you sure?')">
-                                    <i class="fas fa-trash-alt hover:text-gray-400"></i>
+                                    <i class="fas fa-trash-alt hover:text-red-400"></i>
                                 </button>
                             </form>
                         </td>

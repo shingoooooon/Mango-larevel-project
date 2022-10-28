@@ -37,7 +37,7 @@
                                 @csrf
                                 @method('DELETE')
                                 <button onclick="return confirm('Are you sure?')">
-                                    <i class="fas fa-trash-alt hover:text-gray-400"></i>
+                                    <i class="fas fa-trash-alt hover:text-red-400"></i>
                                 </button>
                             </form>
                         </td>
