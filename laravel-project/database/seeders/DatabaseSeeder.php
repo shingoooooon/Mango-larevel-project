@@ -52,7 +52,7 @@ class DatabaseSeeder extends Seeder
         foreach ($tasks as $task) {
             DB::table('tasks')->insert([
                 'name' => $task,
-                'due_date' => Carbon::tomorrow(),
+                'due_date' => '10/28/2023',
                 'folder_id' => 1,
             ]);
         }
