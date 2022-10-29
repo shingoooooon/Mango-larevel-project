@@ -6,7 +6,7 @@
             <div class="w-1/4 md:w-2/6 font-light bg-gray-50 rounded">
                 <div class="flex items-center justify-between border-b border-gray-200 p-3">
                     <div class="text-black font-bold uppercase text-lg py-5 px-5">Folders</div>
-                    <a href="{{ route('folders.create') }}" class="text-white bg-teal-500 hover:bg-teal-700 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+                    <a href="{{ route('folders.create') }}" class="text-white bg-teal-500 hover:bg-teal-700 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 focus:outline-none">
                         <i class="fas fa-plus"></i></a>
                 </div>
                 @foreach($folders as $folder)
@@ -30,8 +30,8 @@
             <div class="p-4 w-full bg-gray-50 ml-4 font-light rounded">
                 <div class="flex items-center justify-between border-b border-gray-200">
                     <div class="text-black font-bold uppercase text-sm py-5 px-5"><span class="text-lg">{{ $current_folder->title }}</span>->Tasks</div>
-                    <a href="{{ route('tasks.create', ['folder' => $current_folder->id]) }}" class="text-white bg-teal-500 hover:bg-teal-700 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
-                        <i class="fas fa-plus mr-1"></i></a>
+                    <a href="{{ route('tasks.create', ['folder' => $current_folder->id]) }}" class="text-white bg-teal-500 hover:bg-teal-700 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 focus:outline-none">
+                        <i class="fas fa-plus"></i></a>
                 </div>
                 <table class="w-full border-separate border border-slate-400">
                     <thead>
