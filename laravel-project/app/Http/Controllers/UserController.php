@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateUser;
+use App\Http\Requests\EditProfile;
 use App\Http\Requests\EditUser;
 use App\Http\Requests\LoginUser;
 use App\Models\User;
@@ -18,6 +19,13 @@ class UserController extends Controller
             'users' => $users,
         ]);
 
+    }
+
+    public function show(User $user)
+    {
+        return view('users/show', [
+            'user' => $user,
+        ]);
     }
 
     public function edit(User $user)
@@ -36,8 +44,39 @@ class UserController extends Controller
 
         return redirect()
             ->route('users.index')
-            ->with('message', 'User edited successfully');
+            ->with('message', 'User updated successfully');
     }
+
+    public function editprofile(User $user)
+    {
+        return view('users/editprofile', [
+            'user' => $user,
+        ]);
+    }
+
+    public function updateprofile(User $user, EditProfile $request)
+    {
+        $user->username = $request->username;
+        $user->email = $request->email;
+        $user->password = $request->password;
+        if (auth()->user()->is_admin)
+        {
+            $user->is_admin = $request->is_admin;
+        }
+        if ($request->hasFile('icon'))
+        {
+            $user->icon = $request->file('icon')->store('icons', 'public');
+        }
+        $user->save();
+
+
+
+        return redirect()
+            ->route('users.show', $user)
+            ->with('message', 'Profile updated successfully');
+    }
+
+
 
     public function destroy(User $user)
     {

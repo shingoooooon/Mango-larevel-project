@@ -21,24 +21,6 @@ Route::group(['middleware' => 'auth'], function() {
         return view('home');
     });
 
-//    Route::resource('folders', FolderController::class)
-//        ->only(['create', 'store'])
-//        ->names([
-//            'create' => 'folders.create',
-//            'store' => 'folders.store'
-//        ]);
-//
-//    Route::resource('tasks', TaskController::class)
-//        ->except('show')
-//        ->names([
-//            'index' => 'tasks.index',
-//            'create' => 'tasks.create',
-//            'store' => 'tasks.store',
-//            'edit' => 'tasks.edit',
-//            'update' => 'tasks.update',
-//            'destroy' => 'tasks.destroy',
-//        ]);
-
     Route::get('/folders/create', [FolderController::class, 'create'])
         ->name('folders.create');
     Route::post('/folders/store', [FolderController::class, 'store'])
@@ -69,8 +51,14 @@ Route::group(['middleware' => 'auth'], function() {
         ->name('users.edit');
     Route::patch('/users/{user}/update', [UserController::class, 'update'])
         ->name('users.update');
+    Route::get('/users/{user}/editprofile', [UserController::class, 'editprofile'])
+        ->name('users.editprofile');
+    Route::patch('/users/{user}/updateprofile', [UserController::class, 'updateprofile'])
+        ->name('users.updateprofile');
     Route::delete('/users/{user}/delete', [UserController::class, 'destroy'])
         ->name('users.destroy');
+    Route::get('/users/{user}', [UserController::class, 'show'])
+        ->name('users.show');
 
     Route::post('/logout', [UserController::class, 'logout']);
 });
