@@ -19,6 +19,11 @@
                     </a>
                 </li>
                 <li>
+                    <a href="{{ route('change-password') }}" class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                        <i class="fas fa-key mr-1"></i>Change Password
+                    </a>
+                </li>
+                <li>
                     @if(auth()->user()->folders()->first())
                     <a href="{{ route('tasks.index', ['folder' => auth()->user()->folders()->first()]) }}" class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
                         <i class="fas fa-columns mr-1"></i>Dashboard
