@@ -64,16 +64,19 @@ Route::group(['middleware' => 'auth'], function() {
     Route::post('/update-password', [UserController::class, 'updatePassword'])
         ->name('update-password');
 
-    Route::post('/logout', [UserController::class, 'logout']);
+    Route::post('/logout', [UserController::class, 'logout'])
+        ->name('logout');
 });
 
 
 Route::group(['middleware' => 'guest'], function() {
-    Route::get('/register', [UserController::class, 'create']);
+    Route::get('/register', [UserController::class, 'create'])
+        ->name('register');
     Route::post('/storeuser', [UserController::class, 'store']);
     Route::get('/login', [UserController::class, 'login'])
         ->name('login');
-    Route::post('/authenticate', [UserController::class, 'authenticate']);
+    Route::post('/authenticate', [UserController::class, 'authenticate'])
+        ->name('authenticate');
 });
 
 

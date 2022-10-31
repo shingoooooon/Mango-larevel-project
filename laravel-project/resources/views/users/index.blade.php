@@ -1,35 +1,35 @@
 <x-layout>
 @include('partials._navigation')
     <div class="container mx-auto">
-        <div class="p-4 w-full bg-gray-50 mt-6 rounded">
-            <div class="text-center border-b border-gray-200">
-                <h1 class="text-xl font-bold my-10">Users List</h1>
-            </div>
+        <div class="w-full bg-gray-50 p-4 mt-6 rounded">
+            <h1 class="text-center text-xl font-bold my-10">Users List</h1>
             <table class="w-full border-separate border border-slate-400">
                 <thead>
                     <tr>
                         <th class="border border-slate-300 p-4 w-24">ID</th>
-                        <th class="border border-slate-300 p-4">Username</th>
-                        <th class="border border-slate-300 pl-2">Email</th>
+                        <th class="border border-slate-300">Username</th>
+                        <th class="border border-slate-300">Email</th>
                         <th class="border border-slate-300">Admin</th>
                         <th class="border border-slate-300">Edit</th>
                         <th class="border border-slate-300">Delete</th>
                     </tr>
                 </thead>
                 <tbody>
-                @if(count($users) == 0)
+                    @if(count($users) == 1)
                     <tr class="text-center">
-                        <td>No users found.</td>
+                        <td colspan="6" class="border border-slate-300 py-3">No users found</td>
                     </tr>
-                @endif
-                @foreach($users as $user)
+                    @endif
+
+                    @foreach($users as $user)
                     @if($user != auth()->user())
                     <tr class="text-center">
                         <td class="border border-slate-300 p-3">{{ $user->id }}</td>
-                        <td class="border border-slate-300 text-left p-3">{{ $user->username }}</td>
+                        <td class="border border-slate-300 text-left pl-2">{{ $user->username }}</td>
                         <td class="border border-slate-300 text-left pl-2">{{ $user->email }}</td>
                         <td class="border border-slate-300">{{ $user->admin_label }}</td>
-                        <td class="border border-slate-300"><a href="{{ route('users.edit', ['user' => $user->id]) }}">
+                        <td class="border border-slate-300">
+                            <a href="{{ route('users.edit', ['user' => $user->id]) }}">
                                 <i class="fas fa-edit hover:text-gray-400"></i>
                             </a>
                         </td>
@@ -44,7 +44,7 @@
                         </td>
                     </tr>
                     @endif
-                @endforeach
+                    @endforeach
                 </tbody>
             </table>
         </div>

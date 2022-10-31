@@ -47,7 +47,7 @@ class UserController extends Controller
 
         return redirect()
             ->route('users.index')
-            ->with('message', 'User updated successfully');
+            ->with('message', 'User-info has updated successfully');
     }
 
     public function editprofile(User $user)
@@ -73,7 +73,7 @@ class UserController extends Controller
 
         return redirect()
             ->route('users.show', $user)
-            ->with('message', 'Profile updated successfully');
+            ->with('message', 'Profile has updated successfully!');
     }
 
     public function destroy(User $user)
@@ -82,7 +82,7 @@ class UserController extends Controller
 
         return redirect()
             ->route('users.index')
-            ->with('message', 'User deleted successfully');
+            ->with('message', 'User has deleted successfully!');
     }
 
     public function changePassword()
@@ -95,7 +95,7 @@ class UserController extends Controller
         if (!Hash::check($request->old_password, auth()->user()->password))
         {
             return back()
-                ->with("error", "Old password Doesn't match");
+                ->with("error", "Old Password doesn't match");
         }
 
         auth()->user()->update([
@@ -103,7 +103,7 @@ class UserController extends Controller
         ]);
 
         return back()
-            ->with('status', 'Password changed successfully');
+            ->with('status', 'Password has changed successfully!');
     }
 
     public function create()
@@ -122,18 +122,7 @@ class UserController extends Controller
         auth()->login($user);
 
         return redirect('/home')
-            ->with('message', 'User created and logged in');
-    }
-
-    public function logout(Request $request)
-    {
-        auth()->logout();
-
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
-
-        return redirect('/login')
-            ->with('message', 'You have been logged out');
+            ->with('message', 'User has created and logged in!');
     }
 
     public function login()
@@ -163,6 +152,17 @@ class UserController extends Controller
         }
 
         return back()->withErrors(['login' => 'lnvalid Credentials'])->onlyInput('login');
+    }
+
+    public function logout(Request $request)
+    {
+        auth()->logout();
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect('/login')
+            ->with('message', 'You have logged out!');
     }
 
 }
