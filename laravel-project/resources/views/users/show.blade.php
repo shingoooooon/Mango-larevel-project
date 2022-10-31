@@ -1,5 +1,5 @@
 <x-layout>
-    @include('partials._navigation')
+@include('partials._navigation')
     <div class="container mx-auto w-3/5 bg-gray-50 mt-6 p-6 rounded flex items-center justify-around">
         <div class="p-5">
             <h1 class="mb-8 text-5xl text-center">{{ $user->username }}</h1>
@@ -13,4 +13,5 @@
             <img src="{{ $user->icon ? asset('storage/' . $user->icon) : asset('images/icon.png') }}" alt="icon" class="md-block w-48">
         </div>
     </div>
+@include('partials._footer')
 </x-layout>

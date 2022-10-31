@@ -79,4 +79,5 @@
             </div>
         </div>
     </div>
+@include('partials._footer')
 </x-layout>
