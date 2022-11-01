@@ -33,13 +33,13 @@
                     <a href="{{ route('tasks.create', ['folder' => $current_folder->id]) }}" class="text-white bg-teal-500 hover:bg-teal-700 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 focus:outline-none">
                         <i class="fas fa-plus"></i></a>
                 </div>
-                <table class="w-full border-separate border border-slate-400">
+                <table class="w-full border-separate border border-slate-400 table-fixed">
                     <thead>
                         <th class="border border-slate-300 p-4">Name</th>
                         <th class="border border-slate-300">Status</th>
                         <th class="border border-slate-300">Due Date</th>
-                        <th class="border border-slate-300">Edit</th>
-                        <th class="border border-slate-300">Delete</th>
+                        <th class="border border-slate-300 w-20">Edit</th>
+                        <th class="border border-slate-300 w-20">Delete</th>
                     </thead>
                     <tbody>
                     @if(count($tasks) == 0)

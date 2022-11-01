@@ -3,15 +3,15 @@
     <div class="container mx-auto">
         <div class="w-full bg-gray-50 p-4 mt-6 rounded">
             <h1 class="text-center text-xl font-bold my-10">Users List</h1>
-            <table class="w-full border-separate border border-slate-400">
+            <table class="w-full border-separate border border-slate-400 table-fixed">
                 <thead>
                     <tr>
                         <th class="border border-slate-300 p-4 w-24">ID</th>
                         <th class="border border-slate-300">Username</th>
                         <th class="border border-slate-300">Email</th>
-                        <th class="border border-slate-300">Admin</th>
-                        <th class="border border-slate-300">Edit</th>
-                        <th class="border border-slate-300">Delete</th>
+                        <th class="border border-slate-300 w-28">Admin</th>
+                        <th class="border border-slate-300 w-20">Edit</th>
+                        <th class="border border-slate-300 w-20">Delete</th>
                     </tr>
                 </thead>
                 <tbody>
