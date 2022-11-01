@@ -3,12 +3,15 @@
         @if(auth()->user()->folders()->first())
             <a href="{{ route('tasks.index', ['folder' => auth()->user()->folders()->first()]) }}" class="font-semibold text-xl">TODO</a>
         @else
-            <a href="#" class="font-semibold text-xl">TODO</a>
+            <a href="{{ route('home') }}" class="font-semibold text-xl">TODO</a>
         @endif
     </div>
 
     <div class="flex items-center justify-between">
-        <p class="text-white font-bold mr-2">Welcome {{ auth()->user()->username }}</p>
+        <p class="text-white font-bold mr-2">{{ auth()->user()->username }}</p>
+        @if(auth()->user()->is_admin)
+        <i class="fas fa-user-cog text-2xl text-white mr-2"></i>
+        @endif
         <button id="dropdownDefault" data-dropdown-toggle="dropdown" type="button">
             <img src="{{ auth()->user()->icon ? asset('storage/' . auth()->user()->icon) : asset('images/icon.png') }}" alt="icon" class="md-block object-cover rounded-full w-12">
         </button>
