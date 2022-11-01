@@ -2,12 +2,7 @@
 
 namespace Database\Seeders;
 
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use App\Models\Task;
-use App\Models\User;
-use App\Models\Folder;
 use Carbon\Carbon;
-use Database\Factories\UserFactory;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
