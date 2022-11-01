@@ -19,7 +19,7 @@ use App\Http\Controllers\UserController;
 Route::group(['middleware' => 'auth'], function() {
     Route::get('/home', function () {
         return view('home');
-    });
+    })->name('home');
 
     Route::get('/folders/create', [FolderController::class, 'create'])
         ->name('folders.create');

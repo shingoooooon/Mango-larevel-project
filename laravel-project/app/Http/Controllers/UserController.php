@@ -132,7 +132,6 @@ class UserController extends Controller
 
     public function authenticate(LoginUser $request)
     {
-        // checking input is email or username.
         $field = filter_var($request->input('login'), FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
         $request->merge([$field => $request->input('login')]);
 
@@ -147,7 +146,8 @@ class UserController extends Controller
                     ->route('tasks.index', $folder)
                     ->with('message', 'You are logged in');
             }
-            return redirect('/home')
+            return redirect()
+                ->route('home')
                 ->with('message', 'You have logged in!');
         }
 
@@ -161,7 +161,8 @@ class UserController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect('/login')
+        return redirect()
+            ->route('login')
             ->with('message', 'You have logged out!');
     }
 
