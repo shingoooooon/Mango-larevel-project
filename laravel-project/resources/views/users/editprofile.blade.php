@@ -30,7 +30,7 @@
             @if($user->is_admin)
             <div class="flex items-center mb-6">
                 <input type="hidden" name="is_admin" value="0">
-                <input {{ $user->is_admin ? 'checked' : '' }} name="is_admin" id="is_admin" type="checkbox" value="1" class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 focus:ring-2">
+                <input {{ $user->is_admin ? 'checked' : '' }} name="is_admin" id="is_admin" type="checkbox" value="1" onclick="return confirm('Are you sure?')" class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 focus:ring-2">
                 <label for="is_admin" class="ml-2 text-sm font-medium text-gray-900">Admin</label>
             </div>
             @endif

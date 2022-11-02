@@ -13,7 +13,7 @@
         <i class="fas fa-user-cog text-2xl text-white mr-2"></i>
         @endif
         <button id="dropdownDefault" data-dropdown-toggle="dropdown" type="button">
-            <img src="{{ auth()->user()->icon ? asset('storage/' . auth()->user()->icon) : asset('images/icon.png') }}" alt="icon" class="md-block object-cover rounded-full w-12">
+            <img src="{{ auth()->user()->icon ? asset('storage/' . auth()->user()->icon) : asset('images/icon.png') }}" alt="icon" class="md-block object-cover rounded-full w-12 h-12">
         </button>
         <!-- Dropdown menu -->
         <div id="dropdown" class="hidden z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow">
