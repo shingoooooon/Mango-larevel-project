@@ -132,14 +132,16 @@ class UserController extends Controller
 
     public function authenticate(LoginUser $request)
     {
+        // checking whether input is email or username
         $field = filter_var($request->input('login'), FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
         $request->merge([$field => $request->input('login')]);
 
+        // the user will be retrieved by the value of $field
+        // the framework will automatically hash the passwprd
         if (auth()->attempt($request->only($field, 'password'))) {
             $request->session()->regenerate();
 
             $folder = auth()->user()->folders()->first();
-
             if ($folder)
             {
                 return redirect()
@@ -159,7 +161,6 @@ class UserController extends Controller
         auth()->logout();
 
         $request->session()->invalidate();
-        $request->session()->regenerateToken();
 
         return redirect()
             ->route('login')
