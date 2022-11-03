@@ -8,15 +8,21 @@ use App\Http\Requests\EditUser;
 use App\Http\Requests\LoginUser;
 use App\Http\Requests\UpdatePassword;
 use App\Models\User;
+use App\Repositories\UserRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Testing\Fluent\Concerns\Has;
 
 class UserController extends Controller
 {
+    protected $repository;
+
+    public function __construct(UserRepository $repository) {
+        $this->repository = $repository;
+    }
+
     public function index()
     {
-        $users = User::all();
+        $users = $this->repository->all();
 
         return view('users/index', [
             'users' => $users,
@@ -38,35 +44,30 @@ class UserController extends Controller
         ]);
     }
 
-    public function update(User $user, EditUser $request)
+    public function update($id, EditUser $request)
     {
-        $user->username = $request->username;
-        $user->email = $request->email;
-        $user->is_admin = $request->is_admin;
-        $user->save();
+        $this->repository->update($request->all(), $id);
 
         return redirect()
             ->route('users.index')
             ->with('message', 'User-info has updated successfully');
     }
 
-    public function editprofile(User $user)
+    public function editProfile(User $user)
     {
-        return view('users/editprofile', [
+        return view('users/editProfile', [
             'user' => $user,
         ]);
     }
 
-    public function updateprofile(User $user, EditProfile $request)
+    public function updateProfile(User $user, EditProfile $request)
     {
         $user->username = $request->username;
         $user->email = $request->email;
-        if (auth()->user()->is_admin)
-        {
+        if (auth()->user()->is_admin) {
             $user->is_admin = $request->is_admin;
         }
-        if ($request->hasFile('icon'))
-        {
+        if ($request->hasFile('icon')) {
             $user->icon = $request->file('icon')->store('icons', 'public');
         }
         $user->save();
@@ -76,9 +77,9 @@ class UserController extends Controller
             ->with('message', 'Profile has updated successfully!');
     }
 
-    public function destroy(User $user)
+    public function destroy($id)
     {
-        $user->delete();
+        $this->repository->delete($id);
 
         return redirect()
             ->route('users.index')
@@ -92,8 +93,7 @@ class UserController extends Controller
 
     public function updatePassword(UpdatePassword $request)
     {
-        if (!Hash::check($request->old_password, auth()->user()->password))
-        {
+        if (!Hash::check($request->old_password, auth()->user()->password)) {
             return back()
                 ->with("error", "Old Password doesn't match");
         }
@@ -137,13 +137,12 @@ class UserController extends Controller
         $request->merge([$field => $request->input('login')]);
 
         // the user will be retrieved by the value of $field
-        // the framework will automatically hash the passwprd
+        // the framework will automatically hash the password
         if (auth()->attempt($request->only($field, 'password'))) {
             $request->session()->regenerate();
 
             $folder = auth()->user()->folders()->first();
-            if ($folder)
-            {
+            if ($folder) {
                 return redirect()
                     ->route('tasks.index', $folder)
                     ->with('message', 'You are logged in');
@@ -153,7 +152,7 @@ class UserController extends Controller
                 ->with('message', 'You have logged in!');
         }
 
-        return back()->withErrors(['login' => 'lnvalid Credentials'])->onlyInput('login');
+        return back()->withErrors(['login' => 'Invalid Credentials'])->onlyInput('login');
     }
 
     public function logout(Request $request)
